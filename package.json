@@ -6,6 +6,9 @@
   "repository": "https://github.com/NoFall887/binar-car-management.git",
   "author": "NoFall887 <naufalamiruddin123456@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.18.1"
   }

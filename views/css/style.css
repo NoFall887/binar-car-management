@@ -1,0 +1,135 @@
+* {
+  font-family: 'IBM Plex Sans', sans-serif !important;
+}
+#sidebar {
+  background-color: #0D28A6;
+  min-height: 100vh;
+}
+
+#head {
+  width: 100%;
+}
+
+#search .btn {
+  font-weight: 700;
+  border-radius: 2px;
+  border-color: #0D28A6;
+  color: #0D28A6;
+}
+
+#search .btn:hover {
+  color: white;
+}
+
+#sidebar .active {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  font-weight: 600;
+}
+#addon-wrapping {
+  background-color: white;
+  border-right: none;
+  padding-right: 0;
+  border-radius: 2px;
+}
+
+.car-card {
+  background-color: white;
+}
+
+.car-card img:first {
+  width: 100%;
+}
+
+.btn-outline-danger:hover path{
+  stroke: white;
+}
+
+.btn {
+  border-radius: 2px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.btn-success {
+  background-color: #5CB85F;
+  border-color: #5CB85F;
+}
+
+.search {
+  border-left: none;
+  border-radius: 2px;
+}
+
+.search:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.nav-pills .active {
+  background-color: #CFD4ED !important;
+  color: black !important;
+  font-weight: bolder;
+}
+
+.sidebar-item {
+  color: white;
+}
+
+.sidebar-item:hover {
+  color: white;
+}
+
+.sidebar-icon {
+  width: 24px;
+}
+
+.sidebar-icon-text {
+  font-size: 12px;
+}
+
+.sidebar-title {
+  color: #8A8A8A;
+}
+
+main {
+  background-color: #f4f5f7;
+  flex: 1;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.filter-btn {
+  border: 1px solid #AEB7E1;
+  background-color: white;
+  border-radius: 2px;
+  padding: 8px 12px;
+  font-weight: 700;
+  color: #AEB7E1;
+}
+
+.filter-btn.active {
+  border-color: #0D28A6;
+  background-color: #CFD4ED;
+  color: #0D28A6;
+}
+
+.add-car-btn {
+  background-color: #0D28A6;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.add-car-btn:hover {
+  color: white;
+}
+
+.price {
+  font-size: 1.125rem;
+}
