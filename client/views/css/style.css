@@ -10,14 +10,17 @@
   width: 100%;
 }
 
-#search .btn {
+.btn.btn-outline-primary {
   font-weight: 700;
   border-radius: 2px;
   border-color: #0D28A6;
   color: #0D28A6;
+  flex: inherit;
 }
 
-#search .btn:hover {
+.btn.btn-outline-primary:hover {
+  background-color: #0D28A6;
+  border-color: #0D28A6;
   color: white;
 }
 
@@ -34,6 +37,7 @@
 
 .car-card {
   background-color: white;
+  width: 32.125%;
 }
 
 .car-card img:first {
@@ -117,19 +121,71 @@ h2 {
   color: #0D28A6;
 }
 
-.add-car-btn {
+.btn.btn-primary {
   background-color: #0D28A6;
   color: white;
   font-weight: 700;
   border: none;
   border-radius: 2px;
   text-decoration: none;
+  flex: inherit;
 }
 
-.add-car-btn:hover {
+.btn.btn-primary:hover {
   color: white;
 }
 
 .price {
   font-size: 1.125rem;
+}
+
+.car-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* alert */
+.alert {
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+  top: 20%;
+  border-radius: 4px;
+  color: white;
+}
+
+.alert.alert-success {
+  background-color: #73CA5C;
+}
+
+.alert.alert-danger {
+  background: black;
+}
+
+/* form */
+#car-form {
+  border-radius: 2px;
+  min-height: 90vh;
+}
+
+.form-main {
+  background-color: white;
+}
+
+.form-control {
+  border-radius: 2px;
+}
+
+.form-select {
+  border-radius: 2px;
+}
+
+.photo-input {
+  position: relative;
+}
+
+.photo-input::before {
+  content: url(../assets/fi_upload.svg);
+  position: absolute;
+  right: 12px;
 }

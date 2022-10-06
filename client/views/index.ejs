@@ -1,0 +1,135 @@
+<% let path = ["Cars", "List Car"] 
+
+if (typeof page !== 'undefined') {
+  path.push(page) 
+}
+%> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cars</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body data-bs-dismiss="alert" data-bs-target="#my-alert">
+  <div class="d-flex">
+    <% if (typeof action !== 'undefined') { %>
+      <% if (action === 'save') { %>
+        <div class="alert alert-success alert-dismissible fade show text-center px-5 shadow-sm fw-bold" id="my-alert" role="alert">
+          Data Berhasil Disimpan
+        </div>
+      <% } else { %>
+        <div class="alert alert-danger alert-dismissible fade show text-center px-5 shadow-sm fw-bold" id="my-alert" role="alert">
+          Data Berhasil Dihapus
+        </div>
+      <% } %>
+    <% } %>
+    
+    <div class="d-flex flex-column flex-shrink-0" id="sidebar">
+      <a href="/" class="d-block p-3 link-dark text-decoration-none">
+        <div style="width: 100%; height: 2.5rem; background-color: #CFD4ED;"></div>
+      </a>
+      <ul class="nav nav-flush flex-column mb-auto text-center">
+        <li class="nav-item">
+          <a href="#" class="nav-link sidebar-item px-2 py-3 rounded-0 d-flex flex-column align-items-center">
+            <img src="/assets/fi_home.svg" class="sidebar-icon mb-1">
+            <span class="sidebar-icon-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link sidebar-item active px-2 py-3 rounded-0 d-flex flex-column align-items-center">
+            <img src="/assets/fi_truck.svg" class="sidebar-icon mb-1">
+            <span class="sidebar-icon-text">Cars</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+    <div class="flex-grow-1">
+      <header class="navbar shadow-sm">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <div class="d-flex" id="navbarSupportedContent">
+            <form class="d-flex me-4" id="search" role="search">
+              <div class="input-group flex-nowrap me-2">
+                <span class="input-group-text" id="addon-wrapping">
+                  <img src="/assets/fi_search.svg" aria-hidden="true">
+                </span>
+                <input type="text" class="form-control search" placeholder="Search" aria-label="Search"
+                  aria-describedby="addon-wrapping">
+              </div>
+
+              <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="user d-flex align-items-center gap-2">
+              <img src="/assets/Group 15.png" alt="user">
+              <span>Unis Badri</span>
+              <img src="/assets/fi_chevron-down.svg">
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="d-flex">
+        <div class="d-flex flex-column flex-shrink-0 py-5" style="width: 220px;">
+          <span class="fw-bolder sidebar-title ms-4 mb-3 me-md-auto">CARS</span>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="#" class="rounded-0 ps-4 nav-link active" aria-current="page">
+                List Car
+              </a>
+            </li>
+
+          </ul>
+        </div>
+        <main class="px-4 py-5">
+          <nav class="mb-4"
+            style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg width='16' height='16' viewBox=' 0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 12L10 8L6 4' stroke='%23222222' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E&#34;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <% path.forEach(function(item, index) { %>
+                <% if (index === (path.length -1)) { %>
+                  <li class="breadcrumb-item active" aria-current="page"><%= item %> </li>
+                <% } else { %>
+                  <li class="breadcrumb-item"><a href="#" class="link-dark text-decoration-none fw-bold"><%= item %> </a></li>
+                <% } %> 
+              <% }); %> 
+            </ol>
+          </nav>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="mb-0"><%= path[path.length - 1] %> </h2>
+            <% if (path[path.length -1].toLowerCase() === "list car") { %>
+              <a role="button" href="./new" class="btn btn-primary py-2 px-3 d-flex align-items-center gap-3">
+                <img src="/assets/fi_plus.svg">
+                Add New Car
+              </a>
+            <% } %>
+          </div>
+          
+          <% if (path[path.length -1].toLowerCase() === "list car") { %>
+            <%- include("./components/listCar") %> 
+          <% } else { %>
+            <%- include("./components/form") %> 
+          <% } %> 
+
+        </main>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

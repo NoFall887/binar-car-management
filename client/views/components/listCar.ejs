@@ -1,0 +1,48 @@
+<div class="d-flex mb-3 gap-3">
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Small</button>
+  <button class="filter-btn">Medium</button>
+  <button class="filter-btn">Large</button>
+</div>
+<section id="car-list" class="d-flex flex-wrap gap-3">
+
+</section>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img src="../assets/img-BeepBeep.png" class="mb-3">
+        <p class="fw-bold">Menghapus Data Mobil</p>
+        <p>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
+        <div class="text-center">
+          <button class="btn btn-primary">
+            Ya
+          </button>
+          <button class="btn btn-outline-primary" data-bs-dismiss="modal">
+            Tidak
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="delete-overlay" class="align-items-center justify-content-center">
+  <div class="delete-overlay-content p-4">
+    <img src="../assets/img-BeepBeep.png" class="mb-3">
+    <p class="fw-bold">Menghapus Data Mobil</p>
+    <p>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
+    <div class="text-center">
+      <button class="btn btn-primary">
+        Ya
+      </button>
+      <button class="btn btn-outline-primary" onclick="CarList.toggleOverlay()">
+        Tidak
+      </button>
+    </div>
+  </div>
+
+</div> -->
+<script src="../js/Car.js"></script>
+<script src="../js/CarList.js"></script>
