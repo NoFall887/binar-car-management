@@ -20,3 +20,7 @@ app.get("/edit/:id", (req, res) => {
 app.get("/new", (req, res) => {
   res.render("index", { page: "Add New Car" });
 });
+
+app.listen(port, () => {
+  console.log(`server running on port ${port}`);
+});
