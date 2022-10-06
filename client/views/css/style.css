@@ -142,6 +142,7 @@ h2 {
 .car-img {
   width: 100%;
   object-fit: cover;
+  aspect-ratio: 16/10;
 }
 
 /* alert */
@@ -149,7 +150,7 @@ h2 {
   position: absolute;
   left: 50%;
   translate: -50%;
-  top: 20%;
+  top: 25%;
   border-radius: 4px;
   color: white;
 }
@@ -182,6 +183,8 @@ h2 {
 
 .photo-input {
   position: relative;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 .photo-input::before {

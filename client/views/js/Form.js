@@ -2,6 +2,9 @@ class Form {
   static inputs = document.querySelectorAll("#car-form input");
   static select = document.querySelector("select");
   static init() {
+    // get initial data
+    this.loadInitData();
+    // add event listeners
     this.inputs.forEach((input) => {
       input.addEventListener("input", Form.handleSaveButton);
     });
@@ -12,6 +15,33 @@ class Form {
     this.select.addEventListener("change", Form.handleSaveButton);
     document.getElementById("car-form").onsubmit = Form.handleSubmit;
     this.handleSaveButton();
+  }
+
+  static loadInitData() {
+    const searchParams = new URL(location.href).searchParams;
+    if (searchParams.has("id")) {
+      axios
+        .get(`http://localhost:8000/cars/${searchParams.get("id")}`)
+        .then((response) => {
+          const data = response.data;
+          [...this.inputs].slice(0, -1).forEach((input) => {
+            console.log(input);
+            input.value = data[input.name];
+          });
+          const fileText = document.getElementsByClassName("photo-input")[0];
+          fileText.innerHTML = data.image;
+          const option = document.querySelector(
+            `option[value=${data.size.size}]`
+          );
+          option.setAttribute("selected", true);
+        })
+        .catch((err) => {
+          alert(`${err} \n Please try again`);
+        });
+      searchParams.get("id");
+    } else {
+      return;
+    }
   }
 
   static handleSaveButton() {
@@ -44,11 +74,28 @@ class Form {
     e.preventDefault();
     const form = document.querySelector("#car-form");
     const formData = new FormData(form);
-    await axios
-      .postForm("http://localhost:8000/cars", formData)
+
+    let reqUrl = "http://localhost:8000/cars";
+    let reqMethod = "post";
+
+    if (location.href.split("/").pop() !== "new") {
+      reqUrl = `http://localhost:8000/cars/${new URL(
+        location.href
+      ).searchParams.get("id")}`;
+      reqMethod = "put";
+    }
+
+    await axios({
+      method: reqMethod,
+      url: reqUrl,
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
       .then((response) => {
         if (response.status === 200) {
-          window.location.href = "http://localhost:8000?action=save";
+          window.location.href = "http://localhost:8800?action=save";
         }
       })
       .catch((err) => {

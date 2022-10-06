@@ -16,16 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   size.init(
     {
       size: DataTypes.STRING,
-      car_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "car",
-          key: "id",
-        },
-      },
     },
     {
       sequelize,
+      timestamps: false,
       modelName: "size",
     }
   );

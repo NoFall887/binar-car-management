@@ -1,4 +1,6 @@
 class CarList {
+  static deleteIdTemp = null;
+
   static async fetchCars() {
     await axios
       .get("http://localhost:8000/cars")
@@ -17,9 +19,26 @@ class CarList {
     Car.list.forEach((car) => {
       carListContainer.innerHTML += car.render();
     });
+
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.onclick = (e) => {
+        CarList.deleteIdTemp = e.target.value;
+      };
+    });
+
+    document.getElementById("confirm-delete").onclick = CarList.confirmDelete;
   }
 
-  static deleteCar() {}
+  static confirmDelete() {
+    axios
+      .delete(`http://localhost:8000/cars/${CarList.deleteIdTemp}`)
+      .then((response) => {
+        location.href = "http://localhost:8800?action=delete";
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 }
 
 CarList.init();

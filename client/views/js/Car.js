@@ -24,7 +24,9 @@ class Car {
     <p class="price fw-bold">Rp.${this.rentPerDay} / hari</p>
     <p class="mb-4"> <img src="./assets/fi_clock.svg"> Updated at 4 ${this.updatedAt.toLocaleString()}</p>
     <div class="d-flex gap-3">
-      <button data-bs-toggle="modal" data-bs-target="#delete-modal" class="delete-btn btn btn-outline-danger d-flex align-items-center gap-2 py-2 px-4 justify-content-center">
+      <button value=${
+        this.id
+      } data-bs-toggle="modal" data-bs-target="#delete-modal" class="delete-btn btn btn-outline-danger d-flex align-items-center gap-2 py-2 px-4 justify-content-center">
         <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1.5 4.5H3H15" stroke="#dc3545" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
@@ -34,7 +36,7 @@ class Car {
         </svg>
         Delete
       </button>
-      <a href="./edit/${
+      <a href="./edit?id=${
         this.id
       }" role="button" class="btn btn-success d-flex align-items-center gap-2 py-2 px-4 justify-content-center">
         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">

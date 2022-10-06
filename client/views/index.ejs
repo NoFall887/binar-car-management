@@ -22,7 +22,7 @@ if (typeof page !== 'undefined') {
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body data-bs-dismiss="alert" data-bs-target="#my-alert">
+<body <%= typeof action !== 'undefined' ? 'data-bs-dismiss=alert data-bs-target=#my-alert': null%> >
   <div class="d-flex">
     <% if (typeof action !== 'undefined') { %>
       <% if (action === 'save') { %>
@@ -60,7 +60,7 @@ if (typeof page !== 'undefined') {
     <div class="flex-grow-1">
       <header class="navbar shadow-sm">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="/">Navbar</a>
           <div class="d-flex" id="navbarSupportedContent">
             <form class="d-flex me-4" id="search" role="search">
               <div class="input-group flex-nowrap me-2">
@@ -86,7 +86,7 @@ if (typeof page !== 'undefined') {
           <span class="fw-bolder sidebar-title ms-4 mb-3 me-md-auto">CARS</span>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="rounded-0 ps-4 nav-link active" aria-current="page">
+              <a href="/" class="rounded-0 ps-4 nav-link active" aria-current="page">
                 List Car
               </a>
             </li>

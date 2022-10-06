@@ -12,8 +12,7 @@ app.get("/", (req, res) => {
     : res.render("index");
 });
 
-app.get("/edit/:id", (req, res) => {
-  console.log(req.params.id);
+app.get("/edit", (req, res) => {
   res.render("index", { page: "Update Car Information" });
 });
 
