@@ -64,9 +64,10 @@ app.put("/cars/:id", upload.single("image"), handleUpload, (req, res) => {
 // get cars data
 app.get("/cars", (req, res) => {
   const options = { include: size };
+
   if (req.query.size) {
     options.where = {
-      sizeId: sizeMap[req.body.size.toLowerCase()],
+      sizeId: sizeMap[req.query.size.toLowerCase()],
     };
   }
 

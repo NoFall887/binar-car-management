@@ -1,25 +1,34 @@
 class CarList {
   static deleteIdTemp = null;
-
-  static async fetchCars() {
+  static carListContainer = document.getElementById("car-list");
+  static async fetchCars(size = null) {
+    let option = {};
+    if (size) {
+      option.params = {
+        size: size,
+      };
+    }
     await axios
-      .get("http://localhost:8000/cars")
+      .get("http://localhost:8000/cars", option)
       .then((response) => {
         Car.init(response.data);
       })
       .catch((err) => {
         alert(`${err} \n Please try again`);
       });
-  }
 
+    Car.list.forEach((car) => {
+      this.carListContainer.innerHTML += car.render();
+    });
+  }
+  static clearCars() {
+    this.carListContainer.innerHTML = "";
+  }
   static async init() {
     // display cars
     await this.fetchCars();
-    const carListContainer = document.getElementById("car-list");
-    Car.list.forEach((car) => {
-      carListContainer.innerHTML += car.render();
-    });
 
+    // add event listeners
     document.querySelectorAll(".delete-btn").forEach((button) => {
       button.onclick = (e) => {
         CarList.deleteIdTemp = e.target.value;
@@ -27,6 +36,13 @@ class CarList {
     });
 
     document.getElementById("confirm-delete").onclick = CarList.confirmDelete;
+
+    document.querySelectorAll(".btn-check").forEach((btn) => {
+      btn.onchange = async (e) => {
+        CarList.clearCars();
+        await CarList.fetchCars(e.target.value);
+      };
+    });
   }
 
   static confirmDelete() {
