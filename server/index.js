@@ -4,9 +4,10 @@ const app = express();
 const port = process.env.PORT || 8000;
 const cors = require("cors");
 const multer = require("multer");
+const { handleUpload } = require("./cloudinary");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-
+const { cars } = require("./models");
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "views")));
@@ -59,11 +60,29 @@ const list = [
   },
 ];
 
-app.post("/cars", upload.single("photo"), (req, res) => {
-  console.log(req.headers);
-  console.log(req.file);
+const sizeMap = {
+  small: 1,
+  medium: 2,
+  large: 3,
+};
+
+app.post("/cars", upload.single("photo"), handleUpload, (req, res) => {
   console.log(req.body);
-  res.json({ message: "data saved" });
+  cars
+    .create({
+      image: req.photo.secure_url,
+      rentPerDay: parseInt(req.body.rent),
+      name: req.body.name,
+      sizeId: sizeMap[req.body.size.toLowerCase()],
+    })
+    .then((result) => {
+      console.log(result);
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(406).json(err);
+    });
 });
 
 app.get("/cars", (req, res) => {
