@@ -109,5 +109,5 @@ Response body example :
 ```
 
 ### Delete a Car Data
-For deleting car data make a DELETE request to `localhost:8000/cars/:id`. The response will be a car id that has been deleted
+For deleting car data make a DELETE request to `localhost:8000/cars/:id`. The response will be the car id that has been deleted
 
