@@ -90,6 +90,7 @@ Request body example :
 |rentPerDay|200000    |text   |
 |name      |Mitsubushi|text   |
 |size      |medium    |text   |
+
 for size field use one of  **small, medium, or large** value
 
 Response body example :
